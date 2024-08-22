@@ -1,0 +1,72 @@
+# haverly1
+set COMP := c1 c2 c3;
+set QUAL := q1;
+set PROD := p1 p2;
+set POOL := o1;
+
+
+# components related parameters
+#table compparams(comp,*)
+param:   complb  compub      cprice :=
+    c1      0   300     6
+    c2      0   300    16
+    c3      0   300    10 ;
+
+#parameters cl(comp), cu(comp), cprice(comp);
+#cl(comp) = compparams(comp,'1');
+#cu(comp) = compparams(comp,'2');
+#cprice(comp) = compparams(comp,'3');
+
+#table cqual(comp,qual)
+param cqual:
+           q1 :=
+    c1      3
+    c2      1
+    c3      2 ;
+
+# pool related parameters
+#parameters psize(pool);
+param        psize :=
+        o1     300;
+
+# product related parameters
+#table prodparams(pro,*)
+param:    prodlb  produb   pprice :=    
+    p1      0   100     9
+    p2      0   200    15 ;
+
+#parameters prl(pro), pru(pro), pprice(pro);
+#prl(pro) = prodparams(pro,'1');
+#pru(pro) = prodparams(pro,'2');
+#pprice(pro) = prodparams(pro,'3');
+
+#parameter pqlbd(pro, qual);
+#pqlbd(pro, qual) = 0.0;
+param pqlbd:  
+           q1 :=
+    p1    0.0
+    p2    0.0 ;
+
+#table pqubd(pro, qual)
+param pqubd:  
+           q1 :=
+    p1    2.5
+    p2    1.5 ;
+
+# network related parameters
+#table ubq(comp, pool)
+param qup:  o1  :=
+    c1      1
+    c2      1
+    c3      0 ;
+
+#table uby(pool, pro)
+param yup:    p1    p2  :=     
+    o1    100   200 ;
+
+#table ubz(comp, pro)
+param zup:   p1    p2 :=
+    c1      0     0 
+    c2      0     0 
+    c3    100   200 ;
+
